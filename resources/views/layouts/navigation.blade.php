@@ -1,11 +1,19 @@
-<nav x-data="{ open: false }" class="bg-blue-900 border-b border-blue-800">
+<nav x-data="{ open: false }" class="bg-blue-900 shadow">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Navigation Links -->
+        <div class="flex justify-between h-16 items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center">
+    <a href="{{ url('/') }}" class="flex-shrink-0">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 w-auto">
+    </a>
+</div>
+
+            
+            <!-- Navigation Links -->
+            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-300">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
@@ -14,17 +22,17 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
-                <x-slot name="trigger">
-            <div class="inline-flex items-center">
-                @if(Auth::user()->image)
-                    <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="User Image" class="rounded-full border border-blue-800 cursor-pointer" style="width: 50px; height: 50px;">
-                @else
-                    <div class="w-12 h-12 flex items-center justify-center bg-blue-800 text-white rounded-full cursor-pointer" style="width: 50px; height: 50px;">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                    </div>
-                @endif
-            </div>
-        </x-slot>
+                    <x-slot name="trigger">
+                        <div class="inline-flex items-center">
+                            @if(Auth::user()->profile_image)
+                                <img src="{{ asset('storage/images/' . Auth::user()->profile_image) }}" alt="User Image" class="rounded-full border border-blue-800 cursor-pointer" style="width: 50px; height: 50px;">
+                            @else
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-800 text-white rounded-full cursor-pointer" style="width: 50px; height: 50px;">
+                                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                                </div>
+                            @endif
+                        </div>
+                    </x-slot>
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')" class="text-blue-900 hover:bg-blue-200">

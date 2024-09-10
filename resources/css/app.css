@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background: linear-gradient(to right, #003366, #0073e6);/* From blue-900 to a slightly lighter blue */
+    background-size: cover;
+    background-position: center;
+}
+

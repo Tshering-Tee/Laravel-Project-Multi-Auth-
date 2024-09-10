@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-white leading-tight">
             {{ __('Admin Dashboard') }}
         </h2>
     </x-slot>
@@ -75,16 +75,18 @@
                                                         {{ $user->created_at->format('Y-m-d H:i:s') }}
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                        <div class="flex space-x-4 justify-end">
-                                                            <a href="{{ route('admin.dashboard.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900">
+                                                        <div class="flex space-x-4 justify-end items-center">
+                                                            <!-- Edit Button -->
+                                                            <a href="{{ route('admin.dashboard.edit', $user->id) }}" class="inline-flex items-center px-4 py-2 text-indigo-600 hover:text-indigo-900 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 active:text-indigo-800 transition">
                                                                 Edit
                                                             </a>
-                                                            <form method="POST" action="{{ route('admin.dashboard.destroy', $user->id) }}" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                            <!-- Delete Button -->
+                                                            <form method="POST" action="{{ route('admin.dashboard.destroy', $user->id) }}" onsubmit="return confirm('Are you sure you want to delete this user?');" class="inline">
                                                                 @csrf
                                                                 @method('DELETE')
 
-                                                                <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-800 disabled:opacity-25 transition">
-                                                                    {{ __('Delete User') }}
+                                                                <button type="submit" class="inline-flex items-center px-4 py-2 text-red-500 hover:text-red-700 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:text-red-800 transition">
+                                                                    Delete
                                                                 </button>
                                                             </form>
                                                         </div>
